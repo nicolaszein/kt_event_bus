@@ -12,8 +12,9 @@ object EventBus{
     private var subscribers: HashMap<String, MutableList<Subscriber>> = HashMap()
 
     fun publish(event: Event) {
+        val payload = event.buildPayload()
         for (subscriber in this.subscribers[event.name]!!) {
-            subscriber.handle(event.buildPayload())
+            subscriber.handle(payload)
         }
     }
 
