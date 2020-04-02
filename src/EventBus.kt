@@ -8,8 +8,8 @@ interface Event {
     abstract fun buildPayload(): HashMap<String, Any>
 }
 
-class EventBus{
-    var subscribers: HashMap<String, MutableList<Subscriber>> = HashMap()
+object EventBus{
+    private var subscribers: HashMap<String, MutableList<Subscriber>> = HashMap()
 
     fun publish(event: Event) {
         for (subscriber in this.subscribers[event.name]!!) {

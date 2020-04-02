@@ -35,12 +35,10 @@ data class Order(
 )
 
 fun main() {
-    val eventBus = EventBus()
-
-    eventBus.addSubscriber("orderClosed", SendOrderEmail())
-    eventBus.addSubscriber("orderClosed", GenerateInvoice())
+    EventBus.addSubscriber("orderClosed", SendOrderEmail())
+    EventBus.addSubscriber("orderClosed", GenerateInvoice())
 
     val order = Order("Nicolas Zein", BigDecimal("100.30"))
 
-    eventBus.publish(OrderClosed(order))
+    EventBus.publish(OrderClosed(order))
 }
